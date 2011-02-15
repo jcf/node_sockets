@@ -1,0 +1,72 @@
+!!! 5
+%html
+  %title Node Socket Client
+  %style
+    :sass
+      body
+        font: 14px/18px 'helvetica neue', helvetica, sans-serif
+        color: #666
+        background-color: #eee
+        margin: 0
+        padding: 0
+
+      #container
+        width: 500px
+        margin: 0 auto
+        border: 1px solid #ddd
+        background-color: #fff
+        padding: 20px
+        margin-top: 20px
+
+      #url
+        background-color: #f5f5f5
+        border: 1px solid #ddd
+        line-height: 24px
+        height: 24px
+        padding: 2px 4px
+        overflow: hidden
+
+      ul.phrases
+        list-style: none
+        margin: 20px 0
+        padding: 0
+        overflow: hidden
+
+        li
+          float: left
+          padding: 2px 4px
+          margin: 0 5px 0
+          background-color: #eee
+          border-radius: 3px
+
+          &:last-child
+            margin-right: 0
+
+          &:hover
+            background-color: #3d8c99
+            color: #fff
+            cursor: pointer
+
+  %body
+    #container
+      %h1 Node Socket Client
+
+      %form{ :target => '/', :method => :post }
+        %select{ :id => 'type' }
+          - %w[video text image].map do |type|
+            %option{ :value => type }= type.capitalize
+
+        %input{ :type => 'text', :id => 'message', :size => '30', :placeholder => 'message' }
+        %input{ :type => 'submit', :size => '30', :value => 'Send' }
+
+        %ul.phrases
+          - %w[hello wassup sound goodbye].map do |phrase|
+            %li= phrase
+
+      #url
+
+      #messages
+
+  %script{ :src => '/javascripts/jquery.js', :type => 'text/javascript' }
+  %script{ :src => '/javascripts/socket.io.js', :type => 'text/javascript' }
+  %script{ :src => '/javascripts/application.js', :type => 'text/javascript' }
